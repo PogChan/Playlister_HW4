@@ -1,9 +1,9 @@
 :root {
-  /* 
+  /*
         FIRST WE'LL DEFINE OUR SWATCHES, i.e. THE COMPLEMENTARY
         COLORS THAT WE'LL USE TOGETHER IN MULTIPLE PLACES THAT
         TOGETHER WILL MAKE UP A GIVEN THEME
-    
+
         @author McKilla Gorilla
     */
   --swatch-foundation: #eeeedd;
@@ -12,7 +12,7 @@
   --swatch-contrast: #111111;
   --swatch-accent: #669966;
   --swatch-status: #123456;
-  --my-font-family: "Robaaaoto";
+  --my-font-family: 'Tangerine';
   --bounceEasing: cubic-bezier(0.51, 0.92, 0.24, 1.15);
 }
 
@@ -22,7 +22,7 @@ body {
 
 #root {
   background-color: var(--swatch-primary);
-  font-family: "Lexend Exa";
+  font-family: 'Lexend Exa';
   position: absolute;
   width: 80%;
   left: 10%;
@@ -37,7 +37,9 @@ body {
   top: 0%;
   left: 0%;
 }
-
+#homeButt:hover {
+  box-shadow: 2px 2px red;
+}
 #top5-banner {
   position: absolute;
   left: 0%;
@@ -61,10 +63,10 @@ body {
   border-width: 2px;
   border-style: solid;
   border-radius: 10px;
-  padding-left: 10%;
+
   padding-top: 5%;
   padding-bottom: 5%;
-  height:70%;
+  height: 70%;
   text-align: center;
   vertical-align: center;
 }
@@ -353,41 +355,41 @@ input {
   transition-delay: 0.2s;
 }
 
-[data-animation="slideInOutDown"] .modal-dialog {
+[data-animation='slideInOutDown'] .modal-dialog {
   transform: translateY(100%);
 }
 
-[data-animation="slideInOutTop"] .modal-dialog {
+[data-animation='slideInOutTop'] .modal-dialog {
   transform: translateY(-100%);
 }
 
-[data-animation="slideInOutLeft"] .modal-dialog {
+[data-animation='slideInOutLeft'] .modal-dialog {
   transform: translateX(-100%);
 }
 
-[data-animation="slideInOutRight"] .modal-dialog {
+[data-animation='slideInOutRight'] .modal-dialog {
   transform: translateX(100%);
 }
 
-[data-animation="zoomInOut"] .modal-dialog {
+[data-animation='zoomInOut'] .modal-dialog {
   transform: scale(0.2);
 }
 
-[data-animation="rotateInOutDown"] .modal-dialog {
+[data-animation='rotateInOutDown'] .modal-dialog {
   transform-origin: top left;
   transform: rotate(-1turn);
 }
 
-[data-animation="mixInAnimations"].is-visible .modal-dialog {
+[data-animation='mixInAnimations'].is-visible .modal-dialog {
   animation: mixInAnimations 2s 0.2s linear forwards;
 }
 
-[data-animation="slideInOutDown"].is-visible .modal-dialog,
-[data-animation="slideInOutTop"].is-visible .modal-dialog,
-[data-animation="slideInOutLeft"].is-visible .modal-dialog,
-[data-animation="slideInOutRight"].is-visible .modal-dialog,
-[data-animation="zoomInOut"].is-visible .modal-dialog,
-[data-animation="rotateInOutDown"].is-visible .modal-dialog {
+[data-animation='slideInOutDown'].is-visible .modal-dialog,
+[data-animation='slideInOutTop'].is-visible .modal-dialog,
+[data-animation='slideInOutLeft'].is-visible .modal-dialog,
+[data-animation='slideInOutRight'].is-visible .modal-dialog,
+[data-animation='zoomInOut'].is-visible .modal-dialog,
+[data-animation='rotateInOutDown'].is-visible .modal-dialog {
   transform: none;
 }
 
