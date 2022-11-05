@@ -18,48 +18,46 @@ function WorkspaceScreen() {
   const { store } = useContext(GlobalStoreContext);
   store.history = useHistory();
 
-  useEffect(() => {
-    if (store.currentList === null) {
-      const URLID = store.history.location.pathname.split('/')[2];
-      if (store.hasPlaylistById(URLID)) {
-        return (
-          <Box>
-            <Typography component="h1" variant="h5">
-              THIS AINT UR LIST BRUH...
-            </Typography>
-            <Link href="/" variant="body2">
-              BACK TO YOUR PLAYLISTS
-            </Link>
-          </Box>
-        );
-      }
-    }
-  });
   let modalJSX = '';
   if (store.isEditSongModalOpen()) {
     modalJSX = <MUIEditSongModal />;
   } else if (store.isRemoveSongModalOpen()) {
     modalJSX = <MUIRemoveSongModal />;
   }
+  if (store.currentList === null) {
+    const URLID = store.history.location.pathname.split('/')[2];
 
-  return (
-    <Box>
-      <List
-        id="playlist-cards"
-        sx={{ width: '100%', bgcolor: 'background.paper' }}
-      >
-        {store.currentList.songs.map((song, index) => (
-          <SongCard
-            id={'playlist-song-' + index}
-            key={'playlist-song-' + index}
-            index={index}
-            song={song}
-          />
-        ))}
-      </List>
-      {modalJSX}
-    </Box>
-  );
+    return (
+      <Box>
+        <Typography component="h1" variant="h1">
+          THIS AINT UR PLAYLIST BRUH...😡😡😡😡😡
+        </Typography>
+        <Link href="/" variant="body2" style={{ fontSize: '32pt' }}>
+          BACK TO YOUR PLAYLISTS
+        </Link>
+      </Box>
+    );
+  } else {
+    return (
+      <Box>
+        <List
+          id="playlist-cards"
+          sx={{ width: '100%', bgcolor: 'background.paper' }}
+        >
+          {store.currentList.songs.map((song, index) => (
+            <SongCard
+              id={'playlist-song-' + index}
+              key={'playlist-song-' + index}
+              index={index}
+              song={song}
+            />
+          ))}
+        </List>
+        {modalJSX}
+      </Box>
+    );
+  }
+  return <Box></Box>;
 }
 
 export default WorkspaceScreen;
