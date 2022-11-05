@@ -108,7 +108,7 @@ export default function AppBanner() {
             variant="h4"
             noWrap
             component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
+            sx={{ display: { xs: 'none', sm: 'block' }, zIndex: 11 }}
           >
             <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
               <IconButton size="large" color="inherit">
@@ -117,7 +117,7 @@ export default function AppBanner() {
             </Link>
           </Typography>
           <Box sx={{ flexGrow: 1 }}>{editToolbar}</Box>
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, zIndex: 10 }}>
             <IconButton
               size="large"
               edge="end"

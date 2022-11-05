@@ -131,6 +131,7 @@ body {
   position: absolute;
   left: 0%;
   top: 0%;
+  /* z-index: -1; */
   width: 100%;
   height: 10%;
   text-align: center;
@@ -143,6 +144,13 @@ body {
 
 #add-list-button {
   float: left;
+
+  background-color: white;
+}
+
+#add-list-button:hover {
+  background-color: lightgrey;
+  cursor: pointer;
 }
 
 #list-selector-list {
@@ -163,6 +171,7 @@ body {
   margin: 10px;
   padding: 20px;
   border-radius: 25px;
+  background-color: black;
 }
 
 .list-card:aria-disabled,
@@ -175,8 +184,8 @@ body {
 
 .unselected-list-card:hover {
   cursor: pointer;
-  background-color: var(--swatch-contrast);
-  color: white;
+  background-color: #111111;
+  color: rgb(65, 65, 65);
 }
 
 .selected-list-card {
