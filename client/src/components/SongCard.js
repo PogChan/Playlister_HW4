@@ -61,7 +61,7 @@ function SongCard(props) {
       onDoubleClick={handleDoubleClick}
       onClick={handleClick}
     >
-      {index + 1}.
+      {index + 1}.{' '}
       <a
         id={'song-' + index + '-link'}
         className="song-link"

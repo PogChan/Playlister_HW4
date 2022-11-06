@@ -81,7 +81,7 @@ export default function MUIEditSongModal() {
                 onChange={handleUpdateArtist}
               />
               <div id="you-tube-id-prompt" className="modal-prompt">
-                You Tube Id:
+                YouTube Id:
               </div>
               <input
                 id="edit-song-modal-youTubeId-textfield"

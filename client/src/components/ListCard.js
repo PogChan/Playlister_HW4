@@ -90,7 +90,7 @@ function ListCard(props) {
         width: '100%',
         fontSize: '36pt',
 
-        padding: '20px',
+        padding: '15px',
         borderRadius: '25px',
         backgroundColor: '#e1e4cb',
         '&:hover': {

@@ -45,7 +45,7 @@ const HomeScreen = () => {
         </Fab>
         <Typography variant="h2">Your Lists</Typography>
       </div>
-      <div id="list-selector-list">
+      <div id="playlist-selector">
         {listCard}
         <MUIDeleteModal />
       </div>
