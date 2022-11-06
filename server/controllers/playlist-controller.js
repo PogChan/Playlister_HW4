@@ -9,6 +9,7 @@ const User = require('../models/user-model');
 */
 createPlaylist = (req, res) => {
   const body = req.body;
+  console.log('THIS IS THE BODYUIDFFDGUD');
   console.log('createPlaylist body: ' + JSON.stringify(body));
 
   if (!body) {
@@ -27,21 +28,27 @@ createPlaylist = (req, res) => {
 
   User.findOne({ _id: req.userId }, (err, user) => {
     console.log('user found: ' + JSON.stringify(user));
-    user.playlists.push(playlist._id);
-    user.save().then(() => {
-      playlist
-        .save()
-        .then(() => {
-          return res.status(201).json({
-            playlist: playlist,
+    if (user.email == body.ownerEmail) {
+      user.playlists.push(playlist._id);
+      user.save().then(() => {
+        playlist
+          .save()
+          .then(() => {
+            return res.status(201).json({
+              playlist: playlist,
+            });
+          })
+          .catch((error) => {
+            return res.status(400).json({
+              errorMessage: 'Playlist Not Created!',
+            });
           });
-        })
-        .catch((error) => {
-          return res.status(400).json({
-            errorMessage: 'Playlist Not Created!',
-          });
-        });
-    });
+      });
+    } else {
+      return res.status(403).json({
+        errorMessage: 'Not a playlist registered under you email',
+      });
+    }
   });
 };
 deletePlaylist = async (req, res) => {
