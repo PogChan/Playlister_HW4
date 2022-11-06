@@ -331,16 +331,15 @@ function GlobalStoreContextProvider(props) {
     getListToDelete(id);
   };
 
-  store.hasPlaylistById = function (id) {
-    async function getPlaylistById(id) {
-      let response = await api.getPlaylistById(id);
-      if (response.data.success) {
+  store.hasPlaylistById = async function (id) {
+    api
+      .getPlaylistById(id)
+      .then((res) => {
         return true;
-      } else {
+      })
+      .catch((err) => {
         return false;
-      }
-    }
-    return getPlaylistById(id);
+      });
   };
   store.unmarkListForDeletion = function () {
     storeReducer({
@@ -403,6 +402,8 @@ function GlobalStoreContextProvider(props) {
     async function asyncSetCurrentList(id) {
       let response = await api.getPlaylistById(id);
       if (response.data.success) {
+        console.log('LOGGING CURRENT LIST');
+        console.log(response);
         let playlist = response.data.playlist;
 
         response = await api.updatePlaylistById(playlist._id, playlist);
@@ -423,7 +424,7 @@ function GlobalStoreContextProvider(props) {
   };
   store.addNewSong = function () {
     let index = this.getPlaylistSize();
-    this.addCreateSongTransaction(index, 'Untitled', '?', 'dQw4w9WgXcQ');
+    this.addCreateSongTransaction(index, 'Untitled', 'Unknown ', 'dQw4w9WgXcQ');
   };
   // THIS FUNCTION CREATES A NEW SONG IN THE CURRENT LIST
   // USING THE PROVIDED DATA AND PUTS THIS SONG AT INDEX
@@ -481,7 +482,7 @@ function GlobalStoreContextProvider(props) {
     store.addCreateSongTransaction(
       playlistSize,
       'Untitled',
-      '?',
+      'Unknown',
       'dQw4w9WgXcQ'
     );
   };

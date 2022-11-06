@@ -23,7 +23,10 @@ function SongCard(props) {
     event.preventDefault();
     setDraggedTo(false);
   }
-
+  function handleDoubleClick(event) {
+    event.preventDefault();
+    store.showEditSongModal(index, song);
+  }
   function handleDrop(event) {
     event.preventDefault();
     let targetIndex = index;
@@ -55,6 +58,7 @@ function SongCard(props) {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
       draggable="true"
+      onDoubleClick={handleDoubleClick}
       onClick={handleClick}
     >
       {index + 1}.

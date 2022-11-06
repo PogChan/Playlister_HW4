@@ -17,27 +17,35 @@ import { GlobalStoreContext } from '../store/index.js';
 function WorkspaceScreen() {
   const { store } = useContext(GlobalStoreContext);
   store.history = useHistory();
+  useEffect(() => {
+    if (store.currentList === null) {
+      const URLID = store.history.location.pathname.split('/')[2];
 
+      if (store.hasPlaylistById(URLID)) {
+        console.log('SETTING CURRENT LIST');
+        store.setCurrentList(URLID);
+      } else {
+        return (
+          <Box>
+            <Typography component="h1" variant="h1">
+              THIS AINT UR PLAYLIST BRUH...😡😡😡😡😡
+            </Typography>
+            <Link href="/" variant="body2" style={{ fontSize: '32pt' }}>
+              BACK TO YOUR PLAYLISTS
+            </Link>
+          </Box>
+        );
+      }
+    }
+  });
   let modalJSX = '';
   if (store.isEditSongModalOpen()) {
     modalJSX = <MUIEditSongModal />;
   } else if (store.isRemoveSongModalOpen()) {
     modalJSX = <MUIRemoveSongModal />;
   }
-  if (store.currentList === null) {
-    const URLID = store.history.location.pathname.split('/')[2];
 
-    return (
-      <Box>
-        <Typography component="h1" variant="h1">
-          THIS AINT UR PLAYLIST BRUH...😡😡😡😡😡
-        </Typography>
-        <Link href="/" variant="body2" style={{ fontSize: '32pt' }}>
-          BACK TO YOUR PLAYLISTS
-        </Link>
-      </Box>
-    );
-  } else {
+  if (store.currentList !== null) {
     return (
       <Box>
         <List
@@ -57,6 +65,7 @@ function WorkspaceScreen() {
       </Box>
     );
   }
+
   return <Box></Box>;
 }
 
