@@ -236,6 +236,7 @@ function GlobalStoreContextProvider(props) {
   // THIS FUNCTION PROCESSES CHANGING A LIST NAME
   store.changeListName = function (id, newName) {
     // GET THE LIST
+    console.log('CHANGING LIST NME');
     async function asyncChangeListName(id) {
       let response = await api.getPlaylistById(id);
       if (response.data.success) {
@@ -244,10 +245,12 @@ function GlobalStoreContextProvider(props) {
         async function updateList(playlist) {
           response = await api.updatePlaylistById(playlist._id, playlist);
           if (response.data.success) {
+            history.push('/playlist/' + playlist._id);
             async function getListPairs(playlist) {
               response = await api.getPlaylistPairs();
               if (response.data.success) {
                 let pairsArray = response.data.idNamePairs;
+
                 storeReducer({
                   type: GlobalStoreActionType.CHANGE_LIST_NAME,
                   payload: {
