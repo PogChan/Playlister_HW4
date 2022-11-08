@@ -17,15 +17,17 @@ import { GlobalStoreContext } from '../store/index.js';
 function WorkspaceScreen() {
   const { store } = useContext(GlobalStoreContext);
   store.history = useHistory();
+
   useEffect(() => {
     if (store.currentList === null) {
       const URLID = store.history.location.pathname.split('/')[2];
       console.log('CURRENT LIST IS NULL');
 
-      console.log('SETTING CURRENT LIST');
       store.hasPlaylistById(URLID);
+      console.log('WAITING ON THE THING AND RETURNING RN');
     }
-  });
+    console.log(store.currentList);
+  }, [store]);
 
   let modalJSX = '';
   if (store.isEditSongModalOpen()) {
