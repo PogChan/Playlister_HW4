@@ -276,6 +276,9 @@ function GlobalStoreContextProvider(props) {
     history.push('/');
   };
 
+  store.clearAllTrans = function () {
+    tps.clearAllTransactions();
+  };
   // THIS FUNCTION CREATES A NEW LIST
   store.createNewList = async function () {
     let newListName = 'Untitled' + store.newListCounter;

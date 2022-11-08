@@ -92,7 +92,9 @@ export default function AppBanner() {
       editToolbar = <EditToolbar />;
     }
   }
-
+  function clearAllTransactions() {
+    store.clearAllTrans();
+  }
   function getAccountMenu(loggedIn) {
     let userInitials = auth.getUserInitials();
     console.log('userInitials: ' + userInitials);
@@ -110,7 +112,11 @@ export default function AppBanner() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' }, zIndex: 11 }}
           >
-            <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
+            <Link
+              style={{ textDecoration: 'none', color: 'white' }}
+              to="/"
+              onClick={clearAllTransactions}
+            >
               <IconButton size="large" color="inherit">
                 ⌂
               </IconButton>
