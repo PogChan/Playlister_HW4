@@ -335,10 +335,11 @@ function GlobalStoreContextProvider(props) {
     api
       .getPlaylistById(id)
       .then((res) => {
-        return true;
+        store.setCurrentList(id);
       })
       .catch((err) => {
-        return false;
+        console.log('THIS IS NOT YOUR PLAYLIST');
+        history.push('/playListNotFound/');
       });
   };
   store.unmarkListForDeletion = function () {

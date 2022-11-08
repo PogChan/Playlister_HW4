@@ -20,24 +20,13 @@ function WorkspaceScreen() {
   useEffect(() => {
     if (store.currentList === null) {
       const URLID = store.history.location.pathname.split('/')[2];
+      console.log('CURRENT LIST IS NULL');
 
-      if (store.hasPlaylistById(URLID)) {
-        console.log('SETTING CURRENT LIST');
-        store.setCurrentList(URLID);
-      } else {
-        return (
-          <Box>
-            <Typography component="h1" variant="h1">
-              THIS AINT UR PLAYLIST BRUH...😡😡😡😡😡
-            </Typography>
-            <Link href="/" variant="body2" style={{ fontSize: '32pt' }}>
-              BACK TO YOUR PLAYLISTS
-            </Link>
-          </Box>
-        );
-      }
+      console.log('SETTING CURRENT LIST');
+      store.hasPlaylistById(URLID);
     }
   });
+
   let modalJSX = '';
   if (store.isEditSongModalOpen()) {
     modalJSX = <MUIEditSongModal />;
@@ -65,7 +54,7 @@ function WorkspaceScreen() {
       </Box>
     );
   }
-
+  console.log('HEHE did it bfre');
   return <Box></Box>;
 }
 
