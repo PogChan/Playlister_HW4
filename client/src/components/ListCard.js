@@ -17,8 +17,10 @@ import TextField from '@mui/material/TextField';
 function ListCard(props) {
   const { store } = useContext(GlobalStoreContext);
   const [editActive, setEditActive] = useState(false);
-  const [text, setText] = useState('');
+
   const { idNamePair, selected } = props;
+  const [text, setText] = useState(idNamePair.name);
+  const [disableButt, setDisableButt] = useState(false);
 
   function handleLoadList(event, id) {
     console.log('handleLoadList for ' + id);
@@ -36,6 +38,7 @@ function ListCard(props) {
 
   function handleToggleEdit(event) {
     event.stopPropagation();
+    setDisableButt(true);
     toggleEdit();
   }
 
@@ -57,7 +60,9 @@ function ListCard(props) {
   function handleKeyPress(event) {
     if (event.code === 'Enter') {
       let id = event.target.id.substring('list-'.length);
+
       store.changeListName(id, text);
+      setDisableButt(false);
       toggleEdit();
     }
   }
@@ -70,7 +75,8 @@ function ListCard(props) {
     selectClass = 'selected-list-card';
   }
   let cardStatus = false;
-  if (store.isListNameEditActive) {
+  if (store.listNameActive) {
+    console.log('ListNameACT');
     cardStatus = true;
   }
   let cardElement = (
@@ -98,18 +104,24 @@ function ListCard(props) {
         },
       }}
       button
+      disabled={cardStatus}
       onClick={(event) => {
         handleLoadList(event, idNamePair._id);
       }}
     >
       <Box sx={{ p: 1, flexGrow: 1 }}>{idNamePair.name}</Box>
       <Box sx={{ p: 1 }}>
-        <IconButton onClick={handleToggleEdit} aria-label="edit">
+        <IconButton
+          disabled={cardStatus}
+          onClick={handleToggleEdit}
+          aria-label="edit"
+        >
           <EditIcon style={{ fontSize: '48pt' }} />
         </IconButton>
       </Box>
       <Box sx={{ p: 1 }}>
         <IconButton
+          disabled={cardStatus}
           onClick={(event) => {
             handleDeleteList(event, idNamePair._id);
           }}
