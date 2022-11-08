@@ -71,6 +71,26 @@ deletePlaylist = async (req, res) => {
           console.log('correct user!');
           Playlist.findOneAndDelete({ _id: req.params.id }, () => {
             console.log('DELETED!');
+            console.log(user.playlists);
+            user.playlists = user.playlists.filter(function (value) {
+              return value != req.params.id;
+            });
+
+            console.log(user.playlists);
+            user.save().then(() => {
+              playlist
+                .save()
+                .then(() => {
+                  return res.status(200).json({
+                    success: true,
+                    playlist: list,
+                  });
+                })
+                .catch((error) => {
+                  console.log(err);
+                });
+            });
+
             return res.status(200).json({
               success: true,
               playlist: list,
@@ -152,6 +172,7 @@ getPlaylistPairs = async (req, res) => {
     asyncFindList(user.email);
   }).catch((err) => console.log(err));
 };
+
 getPlaylists = async (req, res) => {
   await Playlist.find({}, (err, playlists) => {
     if (err) {
@@ -165,6 +186,7 @@ getPlaylists = async (req, res) => {
     return res.status(200).json({ success: true, data: playlists });
   }).catch((err) => console.log(err));
 };
+
 updatePlaylist = async (req, res) => {
   const body = req.body;
   console.log('updatePlaylist: ' + JSON.stringify(body));
